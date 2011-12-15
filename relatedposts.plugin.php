@@ -30,6 +30,7 @@ class recent_posts extends Plugin
 			$this->config[$name]= Options::get( $this->class_name . '__' . $name );
 		}
 		$this->add_template('related_posts', dirname(__FILE__) . '/relatedposts.php');
+		$this->add_template( 'block.related_posts', dirname( __FILE__ ) . "/block.relatedposts.php" );
 	}
 	
 	/**
@@ -47,7 +48,14 @@ class recent_posts extends Plugin
 			}
 		}
 	}
-
+    
+    public function filter_block_list( $block_list )
+	{
+		$block_list[ 'related_posts' ] = _t( 'Related Posts' );
+		
+		return $block_list;
+	}
+    
 	/**
 	 * Respond to the user selecting Configure on the plugin page
 	 **/
@@ -67,7 +75,27 @@ class recent_posts extends Plugin
 		}
 
 	}
+    
+    public function action_block_content_related_posts( $block, $theme )
+	{
+		$post = $theme->post;
+	    		
+		$block->related_entry = array();
 
+		if( $post instanceOf Post ) {
+			$post_type = Post::type( 'entry' );
+			$post_status = Post::status( 'published' );	   
+            
+			if( count( $post->tags ) ) {
+				$block->related_entry = Posts::get( array( 'content_type' => Post::type( 'entry' ),
+					'status' => Post::status( 'published' ),
+					'limit' => Options::get( 'related_posts__count' ),
+					'vocabulary' => array('any' => $post->tags ),
+					'not:id' => $post->id ) );
+			}
+		}
+	}
+    
 	public function theme_related_posts( $theme, $post = null )
 	{	
 		// If we don't give it a post use $theme's
