@@ -3,11 +3,11 @@
 	<name>Related Posts</name>
 	<license url="http://www.apache.org/licenses/LICENSE-2.0.html">Apache Software License 2.0</license>
 	<author url="http://eighty4.se">eighty4</author>
-	<version>0.2</version>
+	<version>0.3</version>
 	<url>http://habariproject.org/dis/plugins/relatedposts/</url>
 	<guid>5E5B630C-1276-11DE-AFD8-77AF55D89593</guid>
 	<copyright>2009</copyright>
-	<description><![CDATA[Show the related posts based on interception of tags. Inspired by Raman Ng's (a.k.a. tinyau) RN Related Posts.]]></description>
+	<description><![CDATA[Show the related posts based on interception of tags. Inspired by Raman Ng's (a.k.a. tinyau) RN Related Posts. Version 0.3 adds a block.]]></description>
 	<help>
 		<value><![CDATA[
 			<p>Related Posts outputs a list of posts that related to the current post based on its tags. The number of posts to list, and the header for the list of posts, are configurable.</p><p>Usage: Add <code>$theme->related_posts();</code> to the theme template in the location you want the list to appear.</p><p>Styling the list relies on 3 classes:<ul><li><em>related-post</em>. Use this to style the overall list.</li><li><em>related-post-even</em>. Use this to style even numbered list items.</li><li><em>related-post-odd</em>. Use this to style odd numbered list items.</li></ul></p><p>Related Posts comes with a template (located in the plugin directory) that is used to format the lists. If you wish to use a different format, copy the template to your theme directory and customize it there.</p>
